@@ -6,8 +6,8 @@ on:
   
 jobs:
   security-test:
-    - runs-on: ubuntu-latest
-    - steps:
+    runs-on: ubuntu-latest
+    steps:
       - name: Cloning Repo
         uses: actions/checkout@v2
       - name: Checkov testing 
