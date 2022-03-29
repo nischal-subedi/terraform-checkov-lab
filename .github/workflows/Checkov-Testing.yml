@@ -2,7 +2,7 @@ name: Checkov Testing
 
 on:
   push:
-    branches: [ main ]
+    branches: main
   
 jobs:
   build:
@@ -10,7 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     # - uses: devsecopsacademy/checkov:2.0.241
-    - name: Security Test
-      run: cd ./02-webapp
-      run: apt install checkov 
-      run: checkov -d . --framework terraform --output cli --quiet --skip-check CKV_AWS_20,CKV_AWS_21
+      - run: cd ./02-webapp
+      - run: apt install checkov 
+      - run: checkov -d . --framework terraform --output cli --quiet --skip-check CKV_AWS_20,CKV_AWS_21
