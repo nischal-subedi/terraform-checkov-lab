@@ -1,0 +1,33 @@
+stages:
+  # - syntax
+  - security
+
+# # Check the Terraform code for syntax errors.
+# validate:
+#   stage: syntax
+#   image:
+#       name: hashicorp/terraform:0.12.7
+#       entrypoint:
+#         - '/usr/bin/env'
+#         - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+#   before_script:
+#     - terraform --version
+#     - cd ./02-webapp
+#     - terraform init 
+#   script:
+#     - terraform validate
+
+# Uncomment and complete the following stage to run checkov on the correct
+# target directory. See also: https://docs.gitlab.com/ee/ci/quick_start/
+
+checkov:
+    stage: security
+    image:
+      name: devsecopsacademy/checkov:2.0.241
+      entrypoint:
+        - '/usr/bin/env'
+        - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    before_script:
+    - cd ./02-webapp
+    script:
+    - checkov -d . --framework terraform --output cli --quiet --skip-check CKV_AWS_20,CKV_AWS_21
