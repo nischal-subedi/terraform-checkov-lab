@@ -5,11 +5,13 @@ on:
     branches: main
   
 jobs:
-  build:
+  security-test:
     - runs-on: ubuntu-latest
     - steps:
-      - uses: actions/checkout@v2
-    # - uses: devsecopsacademy/checkov:2.0.241
-        - run: cd ./02-webapp
-        - run: apt install checkov 
-        - run: checkov -d . --framework terraform --output cli --quiet --skip-check CKV_AWS_20,CKV_AWS_21
+      - name: Cloning Repo
+        uses: actions/checkout@v2
+      - name: Checkov testing 
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: ./02-webapp/
+          framework: terraform
