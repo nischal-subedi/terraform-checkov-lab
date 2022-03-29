@@ -10,8 +10,9 @@ jobs:
     steps:
       - name: Cloning Repo
         uses: actions/checkout@v2
-      - name: Checkov testing 
-        uses: bridgecrewio/checkov-action@master
-        with:
-          directory: ./02-webapp/
-          framework: terraform
+        run: sudo apt install checkov
+      # - name: Checkov testing 
+      #   uses: bridgecrewio/checkov-action@master
+      #   with:
+      #     directory: ./02-webapp/
+      #     framework: terraform
